@@ -3,6 +3,7 @@ const cors = require('cors')
 const helmet = require('helmet')
 const bodyParser = require('body-parser')
 const morgan = require('morgan')
+const config = require('../config/config')
 
 const app = express()
 
@@ -20,6 +21,6 @@ app.post('/user', (req, res) => {
 	res.send({ success: true, message: 'User created successfully' })
 })
 
-app.listen(3000, () => {
-	console.log('Server started on port 3000')
+app.listen(config.PORT, () => {
+	console.log('Server started on port ' + config.PORT)
 })
