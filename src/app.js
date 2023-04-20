@@ -5,6 +5,7 @@ const bodyParser = require('body-parser')
 
 const config = require('../config/config')
 const logger = require('../config/logger')
+const userRouter = require('./v1/routes/user.route')
 
 const app = express()
 
@@ -21,11 +22,7 @@ app.get('/', (req, res) => {
 	res.send('Welcome to my API')
 })
 
-app.post('/user', (req, res) => {
-	logger.info({ ...req.body })
-	res.send({ success: true, message: 'User created successfully' })
-})
-
+app.use('/v1/user', userRouter)
 app.listen(config.PORT, () => {
 	console.log('Server started on port ' + config.PORT)
 })
